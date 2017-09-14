@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">test_markdown</string>
+    <string name="inputter">input a link here</string>
+    <string name="click_me">Click me!</string>
+    <string name="do_it">Put a link inside me!</string>
+</resources>
