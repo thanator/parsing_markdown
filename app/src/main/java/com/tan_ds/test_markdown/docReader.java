@@ -109,6 +109,8 @@ public class docReader extends AsyncTaskLoader <String>{
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            httpURLConnection.disconnect();
         }
 
 

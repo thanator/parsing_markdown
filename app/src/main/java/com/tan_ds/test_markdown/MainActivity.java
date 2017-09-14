@@ -49,16 +49,18 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
 
-        getSupportLoaderManager().initLoader(999, null, new downloadCallBack());
+
+
+        getSupportLoaderManager().restartLoader(999, null, new downloadCallBack());
+
 
         }
-
 
         private class downloadCallBack implements LoaderManager.LoaderCallbacks <String>{
 
             @Override
             public Loader<String> onCreateLoader(int id, Bundle args) {
-                return new docReader(MainActivity.this, MyUrl);  // POKA KOSTIL    https://vk.com/doc48817927_450398490
+                return new docReader(MainActivity.this, MyUrl);  // https://vk.com/doc48817927_450398490
             }
 
             @Override
@@ -70,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+
+
 
             }
 
