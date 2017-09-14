@@ -32,7 +32,6 @@ public class docReader extends AsyncTaskLoader <String>{
     public docReader(Context context, String strUrl) {
         super(context);
         this.MyURL = strUrl;
-
     }
 
     @Override
@@ -42,14 +41,12 @@ public class docReader extends AsyncTaskLoader <String>{
 
         return someShit;
     }
-
 //   https://vk.com/doc48817927_450398490
 
     private String TryToDoIt (String urlStr){
 
         HttpURLConnection httpURLConnection = null;
         String someText = "";
-
 
         try {
             URL url = new URL(urlStr);
@@ -99,12 +96,7 @@ public class docReader extends AsyncTaskLoader <String>{
                     br.close();
 
                     someText = text.toString();
-
             }
-
-
-
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -112,9 +104,6 @@ public class docReader extends AsyncTaskLoader <String>{
         } finally {
             httpURLConnection.disconnect();
         }
-
-
-
         return someText;
     }
 
