@@ -59,7 +59,6 @@ public class DocReader extends AsyncTaskLoader <String>{
                     }
                     outputStream.flush();
                     outputStream.close();
-                    outputStream.close();
                     StringBuilder text = new StringBuilder();
                     BufferedReader br = new BufferedReader(new FileReader(file));
                     String line;
