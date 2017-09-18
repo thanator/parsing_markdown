@@ -45,12 +45,6 @@ public class MainActivity extends FragmentActivity {
         myWebView = findViewById(R.id.myWebView);
         myEditText =  findViewById(R.id.myEditText);
         myTextView = findViewById(R.id.myTextView);
-
-
-
-
-
-
     }
 
     public void Shout(View view) {
@@ -73,34 +67,21 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onLoadFinished(Loader<String> loader, String data) {
-                try {
-                    String testMarkdown = new Markdown4jProcessor().process(data);
-                    //myWebView.loadData(testMarkdown, "text/html; charset=utf-8", "utf-8");
+                final Parser parser = Markwon.createParser();
+                final SpannableConfiguration configuration = SpannableConfiguration.create(getApplicationContext());
+                final SpannableRenderer renderer = new SpannableRenderer();
+                final Node node = parser.parse(data);
+                final CharSequence text = renderer.render(configuration, node);
 
+                myTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
+                Markwon.unscheduleDrawables(myTextView);
+                Markwon.unscheduleTableRows(myTextView);
 
+                myTextView.setText(text);
 
-                    final Parser parser = Markwon.createParser();
-                    final SpannableConfiguration configuration = SpannableConfiguration.create(getApplicationContext());
-                    final SpannableRenderer renderer = new SpannableRenderer();
-
-                    final Node node = parser.parse(data);//????????
-                    final CharSequence text = renderer.render(configuration, node);
-
-                    myTextView.setMovementMethod(LinkMovementMethod.getInstance());
-
-                    Markwon.unscheduleDrawables(myTextView);
-                    Markwon.unscheduleTableRows(myTextView);
-
-                    myTextView.setText(text);
-
-                    Markwon.scheduleDrawables(myTextView);
-                    Markwon.scheduleTableRows(myTextView);
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                Markwon.scheduleDrawables(myTextView);
+                Markwon.scheduleTableRows(myTextView);
             }
 
             @Override
